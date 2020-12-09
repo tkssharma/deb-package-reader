@@ -1,0 +1,89 @@
+{
+  "name": "deb-package-reader",
+  "types": "lib/index.d.ts",
+  "version": "1.0.1",
+  "description": "deb-package-reader",
+  "preferGlobal": true,
+  "main": "./build/cjs/lib/generate.js",
+  "bin": {
+    "deb-package-reader": "./build/cjs/bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w",
+    "test": "ENV=test nyc mocha -r ts-node/register -r dotenv/config src/test/**/*.spec.ts --exit",
+    "lint": "tslint -p tsconfig.json",
+    "lint:fix": "tslint --fix -p tsconfig.json",
+    "lint:tests": "tslint -p tsconfig.json -c tslint.tests.json \"./src/**/*.spec.ts\" \"./test/**/*.ts\"",
+    "lint:tests:fix": "tslint --fix -p tsconfig.json -c tslint.tests.json \"./src/**/*.spec.ts\" \"./test/**/*.ts\""
+  },
+  "keywords": [
+    "deb package"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "lib/**/*.d.ts",
+    "lib/**/*.js",
+    "lib/**/*.js.map"
+  ],
+  "repository": {
+    "url": "git@github.com:tkssharma/deb-package-reader.git"
+  },
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "nyc": {
+    "cache": false,
+    "check-coverage": false,
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "coverage/**",
+      "src/test/**",
+      "src/config/environments",
+      "src/lib/interfaces",
+      "node_modules/**"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "sourceMap": false,
+    "reporter": [
+      "html",
+      "text-summary"
+    ],
+    "all": true,
+    "instrument": true
+  },
+  "dependencies": {
+    "@types/clear": "^0.1.0",
+    "@types/clui": "^0.3.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/tmp": "^0.2.0",
+    "axios": "^0.21.0",
+    "chalk": "^4.1.0",
+    "clui": "^0.3.6",
+    "tmp": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.23",
+    "dotenv": "^8.2.0",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^8.5.4",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "ts-sinon": "^1.0.24",
+    "tslint": "^5.20.1",
+    "tslint-clean-code": "^0.2.10",
+    "tslint-config-standard": "^9.0.0",
+    "tslint-consistent-codestyle": "^1.16.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-sonarts": "^1.9.0",
+    "typescript": "^3.8.3"
+  }
+}
